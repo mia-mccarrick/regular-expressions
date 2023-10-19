@@ -72,10 +72,21 @@ public class Main{
 		ArrayList<String> expList = new ArrayList<String>(Arrays.asList(strSplit));
 		if(expList.get(0).equals("a") || expList.get(0).equals("d")){
 			NFA nfa = new NFA();
-			nfa.addState();
-
+			int startState = nfa.addState();
+			nfa.setStartState(startState);
+			int finalState = nfa.addState();
+			nfa.addFinalState(finalState);
+			if (expList.get(0).equals("a")){
+				nfa.addTransition(startState, 'a', finalState);
+			}
+			else if (expList.get(0).equals("d")){
+				nfa.addTransition(startState, 'd', finalState);
+			}
+			if (expList.get(1).equals("*")){
+				nfa.star();
+				///STOPPED HERE
+			}
 		}
-
 
 		/* Case 3 - First character of exp is 'a' or 'd' */
 
